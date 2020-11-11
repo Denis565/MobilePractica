@@ -1,4 +1,4 @@
-package com.example.mobilepractica.DateClass
+package com.example.mobilepractica.Model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

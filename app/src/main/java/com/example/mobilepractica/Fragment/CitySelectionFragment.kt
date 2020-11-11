@@ -28,9 +28,7 @@ class CitySelectionFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        save.setOnClickListener {
-            saveCity()
-        }
+
     }
 
     override fun onAttach(context: Context) {
@@ -59,7 +57,7 @@ class CitySelectionFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        saveCity()
+            saveCity()
     }
 
     override fun onStart() {
