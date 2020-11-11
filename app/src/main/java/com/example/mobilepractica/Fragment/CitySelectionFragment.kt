@@ -61,6 +61,7 @@ class CitySelectionFragment : Fragment() {
         val sher= context?.let { SharedPreferences(it) }
         if(sher?.sharedPref!!.contains("key")){
             inputSearch.setText(sher.getValueString("key"))
+
         }
 
     }
