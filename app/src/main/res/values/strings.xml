@@ -1,3 +1,52 @@
 <resources>
     <string name="app_name">MobilePractica</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="City">
+        <item>Кот</item>
+        <item>Кошка</item>
+        <item>Котёнок</item>
+        <item>Животное</item>
+        <item>Кот</item>
+        <item>Кошка</item>
+        <item>Котёнок</item>
+        <item>Животное</item>
+        <item>Кот</item>
+        <item>Кошка</item>
+        <item>Котёнок</item>
+        <item>Животное</item>
+        <item>Кот</item>
+        <item>Кошка</item>
+        <item>Котёнок</item>
+        <item>Животное</item>
+        <item>Кот</item>
+        <item>Кошка</item>
+        <item>Котёнок</item>
+        <item>Животное</item>
+        <item>Кот</item>
+        <item>Кошка</item>
+        <item>Котёнок</item>
+        <item>Животное</item>
+        <item>Кот</item>
+        <item>Кошка</item>
+        <item>Котёнок</item>
+        <item>Животное</item>
+        <item>Кот</item>
+        <item>Кошка</item>
+        <item>Котёнок</item>
+        <item>Животное</item>
+        <item>Кот</item>
+        <item>Кошка</item>
+        <item>Котёнок</item>
+        <item>Животное</item>
+        <item>Кот</item>
+        <item>Кошка</item>
+        <item>Котёнок</item>
+        <item>Животное</item>
+        <item>Кот</item>
+        <item>Кошка</item>
+        <item>Котёнок</item>
+        <item>Животное</item>
+    </string-array>
 </resources>
