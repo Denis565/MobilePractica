@@ -1,6 +1,10 @@
 package com.example.mobilepractica.Fragment
 
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
+import android.os.Handler
+import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,52 +18,62 @@ import kotlinx.android.synthetic.main.fragment_city_selection.*
 @Suppress("DEPRECATION")
 class CitySelectionFragment : Fragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    val weatherFragment=WeatherFragment()
+
+    private  lateinit var sharedPreference:android.content.SharedPreferences
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_city_selection, container, false)
         return view
     }
 
-
-    /*fun AddCity(rootView:View){
-
-        val myArray = listOf("ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll","ll")
-        listView = rootView.findViewById(R.id.listView)
-        val list= mutableListOf<ListModel>()
-        myArray.forEach { list.add(ListModel(it)) }
-        listView.adapter= context?.let { ListAdapter(it, R.layout.list_row,list) }
-
-    }*/
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        /* CoroutineScope(Dispatchers.IO).launch {
-             AddCity(view)
-         }*/
+        save.setOnClickListener {
+            saveCity()
+        }
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        sharedPreference=PreferenceManager.getDefaultSharedPreferences(context)
+    }
 
-    override fun onResume() {
-        super.onResume()
-        val sher = context?.let { SharedPreferences(it) }
-        Toast.makeText(
-            context,
-            sher?.save("key", inputSearch.text.toString()).toString(),
-            Toast.LENGTH_LONG
-        ).show()
+   /* override fun onPause() {
+        super.onPause()
+      saveCity()
     }
 
     override fun onStart() {
         super.onStart()
-        val sher = context?.let { SharedPreferences(it) }
-        if (sher?.sharedPref!!.contains("key")) {
+        val sher= context?.let { SharedPreferences(it) }
+        if(sher?.sharedPref!!.contains("key")){
             inputSearch.setText(sher.getValueString("key"))
-
-
         }
 
     }
+
+    private fun saveCity() {
+        val sher= context?.let { SharedPreferences(it) }
+        sher?.save("key",inputSearch.text.toString())
+    }*/
+
+    override fun onPause() {
+        super.onPause()
+        saveCity()
+    }
+
+    override fun onStart() {
+        super.onStart()
+       get()
+    }
+
+    fun saveCity(){
+        sharedPreference.edit().putString("o",inputSearch.text.toString()).apply()
+    }
+
+    fun get(){
+        inputSearch.setText(sharedPreference.getString("o","").toString())
+    }
+
+
 }
