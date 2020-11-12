@@ -49,7 +49,7 @@
          />
 
         <TextView
-            android:id="@+id/icon"
+            android:id="@+id/hum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -59,18 +59,46 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/desc"
             android:layout_marginTop="10dp"
-        />
+            />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:indeterminateProgressStyle"
+        <TextView
+            android:id="@+id/pres"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:text="temp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/progressBar"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hum"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:id="@+id/clouds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:text="temp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pres"
+            android:layout_marginTop="10dp"
+            />
+
+        <TextView
+            android:id="@+id/wind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:text="temp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clouds"
+            android:layout_marginTop="10dp"
+            />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

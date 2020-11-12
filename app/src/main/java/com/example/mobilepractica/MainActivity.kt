@@ -18,9 +18,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val controller = Navigation.findNavController(this,R.id.nav_host_fragment)
         NavigationUI.setupWithNavController(bottomNavigationView,controller)
-    }
 
-    companion object {
-        const val url ="https://api.openweathermap.org/data/2.5/weather?id=2172797&units=metric&lang=ru&appid=401e7c441a859bf21e718863f6bbc7ab"
     }
 }

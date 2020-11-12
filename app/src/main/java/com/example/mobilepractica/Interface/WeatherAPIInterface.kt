@@ -1,7 +1,6 @@
 package com.example.mobilepractica.Interface
 
-import com.example.mobilepractica.Model.API.MainWeatherDay
-import com.example.mobilepractica.Model.ClassAPI.MainExampleWeatherDay
+import com.example.mobilepractica.Model.APIExample.MainExampleWeatherDay
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -13,6 +12,7 @@ interface WeatherAPIInterface{
     fun getWeather(
         @Query("q") city: String,
         @Query("units") units:String,
+        @Query("lang") lang:String,
         @Query("appid") api_key: String
     ): Call<MainExampleWeatherDay>
 

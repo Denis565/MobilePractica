@@ -2,7 +2,6 @@ package com.example.mobilepractica.Fragment
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.opengl.Visibility
 import android.os.Bundle
 import android.os.Handler
 import android.preference.PreferenceManager
@@ -10,15 +9,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.mobilepractica.BuildConfig
 import com.example.mobilepractica.ClassConstant
-import com.example.mobilepractica.Interface.WeatherAPIInterface
-import com.example.mobilepractica.Model.API.MainWeatherDay
-import com.example.mobilepractica.Model.ClassAPI.MainExampleWeatherDay
+import com.example.mobilepractica.Model.APIExample.MainExampleWeatherDay
 import com.example.mobilepractica.R
 import com.example.mobilepractica.Retrafit.RetrofitOneDays
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_weather.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,6 +25,7 @@ import retrofit2.Response
 class WeatherFragment : Fragment() {
 
     lateinit var sharedPreferences:android.content.SharedPreferences
+    lateinit var urlImage:String
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_weather, container, false)
         return view
@@ -54,9 +51,8 @@ class WeatherFragment : Fragment() {
     }
 
     fun Retrofit(){
-        val retrofitClass=RetrofitOneDays().getClient(ClassConstant.BASE_URL)
-        val apiInterfaceInterface: WeatherAPIInterface =retrofitClass.create(WeatherAPIInterface::class.java)
-        val call: Call<MainExampleWeatherDay> = apiInterfaceInterface.getWeather(title.text.toString(),"metric",BuildConfig.OPEN_WEATHER_MAP_API_KEY)
+
+        val call=RetrofitOneDays().getClient(title.text.toString())
 
         call.enqueue(object : Callback<MainExampleWeatherDay> {
 
@@ -68,28 +64,27 @@ class WeatherFragment : Fragment() {
 
             @SuppressLint("SetTextI18n")
             override fun onResponse(call: Call<MainExampleWeatherDay>, response: Response<MainExampleWeatherDay>) {
-                if (response.isSuccessful){
+                    if (response.isSuccessful) {
+                        val mydata: MainExampleWeatherDay = response.body()!!
+                        val mainEx=mydata.mainWeather
+                        temperature.text = "Температура: " + mainEx?.temp?.toInt().toString()
+                        pres.text="Атмосферное давление: "+(
+                                mainEx?.pressure?.toDouble()!! /1.33307087
+                                ).toInt().toString()
+                        hum.text="Влажность: "+mainEx?.humidity.toString()
 
-                    val mydata: MainExampleWeatherDay= response.body()!!
-                    temperature.text="Температура: "+ mydata.mainWeather?.temp?.toInt().toString()
+                        desc.text = mydata.weather?.get(0)?.description.toString()
 
+                        clouds.text="Облачность: "+mydata.clouds?.all?.toString()+" %"
+                        wind.text="Скорость ветра: "+mydata.wind?.speed.toString()+"м/с"
 
+                    }
                 }
-                else
-                {
-                    title.text="Вы ввели не правильно город"
-                    progressBar.visibility=View.GONE
-                    title.textSize=30.0F
-                    title.visibility=View.VISIBLE
-                }
-            }
-
-
         })
     }
 
+
     fun timeVisibility(){
-        progressBar.visibility=View.GONE
         title.visibility=View.VISIBLE
         temperature.visibility=View.VISIBLE
     }

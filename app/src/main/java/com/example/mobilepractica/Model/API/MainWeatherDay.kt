@@ -4,16 +4,35 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 class MainWeatherDay {
-        @SerializedName("temp")
-        @Expose
-        var temp: Double? = null
+        class Main {
+                @SerializedName("temp")
+                @Expose
+                var temp: Double? = null
 
-        @SerializedName("description")
-        @Expose
-        var description : String?=null
+                @SerializedName("pressure")
+                @Expose
+                var pressure: Int? = null
 
-        @SerializedName("icon")
-        @Expose
-        var icon : String?=null
+                @SerializedName("humidity")
+                @Expose
+                var humidity: Int? = null
+        }
 
+        class Weather {
+                @SerializedName("description")
+                @Expose
+                var description: String? = null
+        }
+
+        class Clouds{
+                @SerializedName("all")
+                @Expose
+                var all: Int? = null
+        }
+
+        class Wind{
+                @SerializedName("speed")
+                @Expose
+                var speed : Int?=null
+        }
 }
