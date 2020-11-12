@@ -1,10 +1,24 @@
 package com.example.mobilepractica.Model
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
 
+class ListView  {
+    var userName: String
+    var userType: String
+    var isActive: Boolean
 
-@Parcelize
-data class ListModel(
-    val desc:String
-): Parcelable
+    constructor(userName: String, userType: String) {
+        this.userName = userName
+        this.userType = userType
+        isActive = true
+    }
+
+    constructor(userName: String, userType: String, active: Boolean) {
+        this.userName = userName
+        this.userType = userType
+        isActive = active
+    }
+
+    override fun toString(): String {
+        return "$userName ($userType)"
+    }
+}
