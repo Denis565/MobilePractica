@@ -11,11 +11,11 @@ class MainWeather {
 
                 @SerializedName("pressure")
                 @Expose
-                var pressure: Int? = null
+                var pressure: Double? = null
 
                 @SerializedName("humidity")
                 @Expose
-                var humidity: Int? = null
+                var humidity: Double? = null
         }
 
         class Weather {
@@ -27,12 +27,12 @@ class MainWeather {
         class Clouds {
                 @SerializedName("all")
                 @Expose
-                var all: Int? = null
+                var all: Double? = null
         }
 
         class Wind {
                 @SerializedName("speed")
                 @Expose
-                var speed: Int? = null
+                var speed: Double? = null
         }
 }

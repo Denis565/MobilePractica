@@ -3,10 +3,12 @@
 package com.example.mobilepractica.Fragment
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.preference.PreferenceManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,12 +55,25 @@ class WeatherFragment : Fragment() {
 
     override fun onStart() {
         Handler().postDelayed({
-            title.text=sharedPreferences.getString("o","")
-            Retrofit()
+            val shared= sharedPreferences.getString("key","")
+            if (sharedPreferences.contains("key") && shared!="") {
+                title.text = sharedPreferences.getString("key", "")
+                Retrofit()
+            }
+            else
+            {
+                val builder=AlertDialog.Builder(context)
+                builder.setTitle("Первый вход")
+                builder.setMessage("Выбирите город. Для этого нажмите на значек лупы.")
+
+                builder.setPositiveButton("Да"){dialog, which -> }
+                builder.create().show()
+            }
         }, 1)
         super.onStart()
 
     }
+
 
     fun Retrofit(){
 
@@ -75,6 +90,7 @@ class WeatherFragment : Fragment() {
 
             override fun onFailure(call: Call<MainExampleWeather>, t: Throwable) {
                 Toast.makeText(context,t.message.toString(),Toast.LENGTH_LONG).show()
+                Log.d("TAG",t.message.toString())
             }
 
             @SuppressLint("SetTextI18n")
@@ -94,13 +110,13 @@ class WeatherFragment : Fragment() {
     fun oneDay(myData:MainExampleWeather){
         val mainEx=myData.mainWeather
         val heat=mainEx?.temp?.toInt()
-       temperature.text = heat.toString()
+        temperature.text = heat.toString()
         description.text=myData.weather?.get(0)?.description.toString().capitalize()
 
-        clouds.text=myData.clouds?.all?.toString()+" %"
-        pressure.text=(mainEx?.pressure?.toDouble()!! /1.33307087).toInt().toString()+" мм рт.ст"
-        humidity.text=mainEx.humidity.toString()+" %"
-        wind.text=myData.wind?.speed.toString()+"м/с"
+        clouds.text=myData.clouds?.all?.toInt().toString()+" %"
+        pressure.text=(mainEx?.pressure!! /1.33307087).toInt().toString()+" мм рт.ст"
+        humidity.text=mainEx.humidity?.toInt().toString()+" %"
+        wind.text= myData.wind?.speed?.toInt().toString()+"м/с"
 
         if ( heat!! > 15){
             advice.text="Идти купаться, или загорать."

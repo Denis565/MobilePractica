@@ -18,15 +18,6 @@ interface WeatherAPIInterface{
         @Query("appid") api_key: String
     ): Call<MainExampleWeather>
 
-    @GET("onecall")
-    fun weatherSevenDays(
-        @Query("lat") lat: Double,
-        @Query("lon") lon:Double,
-        @Query("units") units:String,
-        @Query("exclude") exclude:String,
-        @Query("appid") api_key: String
-    ):Call<MainExampleWeather>
-
 }
 
 

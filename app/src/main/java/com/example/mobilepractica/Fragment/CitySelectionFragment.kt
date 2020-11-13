@@ -76,11 +76,11 @@ class CitySelectionFragment : Fragment() {
     }
 
     fun saveCity() {
-        sharedPreference.edit().putString("o", editTextCity.text.toString()).apply()
+        sharedPreference.edit().putString("key", editTextCity.text.toString()).apply()
     }
 
     fun getCity() {
-        editTextCity.setText(sharedPreference.getString("o", "").toString())
+        editTextCity.setText(sharedPreference.getString("key", "").toString())
     }
 
     fun getings(view: View) {
