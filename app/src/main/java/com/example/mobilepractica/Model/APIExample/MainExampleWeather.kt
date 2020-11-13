@@ -1,6 +1,6 @@
 package com.example.mobilepractica.Model.APIExample
 
-import com.example.mobilepractica.Model.API.MainWeather
+import com.example.mobilepractica.Model.APIMain.MainWeather
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 

@@ -1,4 +1,4 @@
-package com.example.mobilepractica.Model.API
+package com.example.mobilepractica.Model.APIMain
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

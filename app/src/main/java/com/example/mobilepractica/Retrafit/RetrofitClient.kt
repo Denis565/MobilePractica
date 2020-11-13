@@ -8,16 +8,18 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitOneDays {
+class RetrofitClient {
 
-    fun getClient():Retrofit{
+    private var retrofit:  Retrofit?=null
 
-        val retrofit = Retrofit.Builder()
-                .baseUrl(ClassConstant.BASE_URL)
+    fun getClient(baseUrl:String):Retrofit{
+
+        retrofit = Retrofit.Builder()
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
-        return retrofit
+        return retrofit!!
 
     }
 

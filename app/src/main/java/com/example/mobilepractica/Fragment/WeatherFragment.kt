@@ -12,32 +12,27 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.mobilepractica.BuildConfig
+import com.example.mobilepractica.Common.Common
 import com.example.mobilepractica.Interface.WeatherAPIInterface
 import com.example.mobilepractica.Model.APIExample.MainExampleWeather
 import com.example.mobilepractica.R
-import com.example.mobilepractica.Retrafit.RetrofitOneDays
+import com.example.mobilepractica.Retrafit.RetrofitClient
+import kotlinx.android.synthetic.main.fragment_city_selection.*
 import kotlinx.android.synthetic.main.fragment_weather.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
 
 
 @Suppress("DEPRECATION")
 class WeatherFragment : Fragment() {
 
     lateinit var sharedPreferences:android.content.SharedPreferences
-    var lon:Double?=null
-    var lat:Double?=null
-    lateinit var call: Call<MainExampleWeather>
+    lateinit var api: WeatherAPIInterface
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_weather, container, false)
@@ -45,6 +40,7 @@ class WeatherFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        dataAcquisition()
     }
 
     override fun onAttach(context: Context) {
@@ -53,11 +49,11 @@ class WeatherFragment : Fragment() {
 
     }
 
-    override fun onStart() {
+    fun dataAcquisition(){
         Handler().postDelayed({
-            val shared= sharedPreferences.getString("key","")
-            if (sharedPreferences.contains("key") && shared!="") {
-                title.text = sharedPreferences.getString("key", "")
+            val shared= sharedPreferences.getString("city","")
+            if (sharedPreferences.contains("city") && shared!="") {
+                title.text = sharedPreferences.getString("city", "")
                 Retrofit()
             }
             else
@@ -66,25 +62,30 @@ class WeatherFragment : Fragment() {
                 builder.setTitle("Первый вход")
                 builder.setMessage("Выбирите город. Для этого нажмите на значек лупы.")
 
-                builder.setPositiveButton("Да"){dialog, which -> }
+                builder.setPositiveButton("Да"){ _, _ -> }
                 builder.create().show()
             }
         }, 1)
-        super.onStart()
+    }
+
+    fun animation(){
+
+        LinerCardOne.startAnimation(AnimationUtils.loadAnimation(context,R.anim.translate_card))
+        LinerCardTwo.startAnimation(AnimationUtils.loadAnimation(context,R.anim.translate_card))
+        advice.startAnimation(AnimationUtils.loadAnimation(context,R.anim.alpha))
+        adviceText.startAnimation(AnimationUtils.loadAnimation(context,R.anim.alpha))
+        temperature.startAnimation(AnimationUtils.loadAnimation(context,R.anim.alpha))
+        icon_temperature.startAnimation(AnimationUtils.loadAnimation(context,R.anim.alpha))
+        title.startAnimation(AnimationUtils.loadAnimation(context,R.anim.translate_title))
+        description.startAnimation(AnimationUtils.loadAnimation(context,R.anim.translate_description))
 
     }
 
-
     fun Retrofit(){
 
-        val retrofit=RetrofitOneDays().getClient()
-        val apiInterfaceInterface: WeatherAPIInterface =retrofit.create(WeatherAPIInterface::class.java)
-            call= apiInterfaceInterface.getWeather(
-                title.text.toString(),
-                "metric",
-                "ru",
-                BuildConfig.OPEN_WEATHER_MAP_API_KEY
-            )
+        api= Common.retrofitServices
+
+        val call=api.getWeather(title.text.toString(), "metric", "ru", BuildConfig.OPEN_WEATHER_MAP_API_KEY)
 
         call.enqueue(object : Callback<MainExampleWeather> {
 
@@ -125,7 +126,9 @@ class WeatherFragment : Fragment() {
             advice.text="Оденься теплее."
         }
 
+        animation()
         relativeLayout.visibility=View.VISIBLE
         progressBar.visibility=View.GONE
     }
+
 }
