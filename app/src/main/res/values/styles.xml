@@ -41,7 +41,7 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_marginTop">1dp</item>
-        <item name="android:background">#1BFAECFA</item>
+        <item name="android:background">#977EC3</item>
         <item name="android:orientation">vertical</item>
         <item name="android:gravity">center</item>
     </style>

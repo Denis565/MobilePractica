@@ -28,7 +28,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION", "PLUGIN_WARNING")
 class WeatherFragment : Fragment() {
 
     lateinit var sharedPreferences:android.content.SharedPreferences
@@ -41,6 +41,8 @@ class WeatherFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         dataAcquisition()
+
+
     }
 
     override fun onAttach(context: Context) {

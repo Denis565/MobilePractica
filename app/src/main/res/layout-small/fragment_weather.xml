@@ -14,7 +14,7 @@
             android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
+            android:visibility="visible"
             tools:layout_editor_absoluteX="-46dp"
             tools:layout_editor_absoluteY="-75dp">
 
@@ -53,7 +53,7 @@
                         android:layout_marginTop="10dp"
                         android:textStyle="bold"
                         android:text="°C"
-                        android:textSize="17sp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
