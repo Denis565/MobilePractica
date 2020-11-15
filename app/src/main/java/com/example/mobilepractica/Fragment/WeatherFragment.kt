@@ -52,10 +52,9 @@ class WeatherFragment : Fragment() {
     }
 
     fun dataAcquisition(){
-        Handler().postDelayed({
-            val shared= sharedPreferences.getString("city","")
-            if (sharedPreferences.contains("city") && shared!="") {
-                title.text = sharedPreferences.getString("city", "")
+            val shared= sharedPreferences.getString("Elect","")
+            if (sharedPreferences.contains("Elect") && shared!="") {
+                title.text = shared
                 Retrofit()
             }
             else
@@ -66,8 +65,8 @@ class WeatherFragment : Fragment() {
 
                 builder.setPositiveButton("Да"){ _, _ -> }
                 builder.create().show()
+                progressBar.visibility=View.GONE
             }
-        }, 1)
     }
 
     fun animation(){

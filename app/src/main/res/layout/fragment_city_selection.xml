@@ -4,46 +4,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragment.CitySelectionFragment"
-    android:id="@+id/frame">
+    tools:context=".Fragment.CitySelectionFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        tools:context=".MainActivity"
+        android:orientation="vertical"
+        >
+
+        <CheckBox
+            android:id="@+id/checkedSystem"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:text="Избранные города"
+            android:checked="false"/>
 
-                <EditText
-                    android:id="@+id/editTextCity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent" />
 
-                <ListView
-                    android:id="@+id/listView"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="16dp"
-                    app:layout_constraintBottom_toTopOf="@+id/button"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editText" />
+        <ListView
+            android:choiceMode="multipleChoice"
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:visibility="visible"
+            android:saveEnabled="false"
+            />
+        <ListView
+            android:choiceMode="singleChoice"
+            android:id="@+id/listViewElect"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:visibility="gone"
+            android:saveEnabled="false"
+            />
 
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="0dp"
-                    android:layout_height="46dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="Print Selected Items"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv"/>
+    </LinearLayout>
+
 </FrameLayout>

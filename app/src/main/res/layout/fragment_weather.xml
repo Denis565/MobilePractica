@@ -8,8 +8,7 @@
     android:background="@drawable/gradient">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        style="@style/Match">
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -20,62 +19,55 @@
             tools:layout_editor_absoluteY="-75dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/Match"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    style="@style/TextTitle_Description_Small"
                     android:text="City"
                     android:textColor="@color/white"
-                    android:textSize="24sp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
+                    style="@style/TextTitle_Description_Small"
                     android:text="Description"
-                    android:textSize="20sp"/>
+                    android:textSize="15sp"/>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/Wrap"
                     android:orientation="horizontal"
                     android:layout_marginTop="10dp">
                     <TextView
                         android:id="@+id/temperature"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold|italic"
+                        style="@style/Wrap"
+                        android:textStyle="bold"
                         android:text="2"
-                        android:textSize="70sp" />
+                        android:textSize="39sp" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="15dp"
-                        android:textStyle="bold|italic"
+                        android:id="@+id/icon_temperature"
+                        style="@style/Match"
+                        android:layout_marginTop="10dp"
+                        android:textStyle="bold"
                         android:text="°C"
-                        android:textSize="30dp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/Wrap"
                     android:orientation="horizontal">
                     <TextView
-                        android:textSize="20dp"
+                        android:id="@+id/adviceText"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         style="@style/TextAdvanced"
                         android:text="Совет: "/>
                     <TextView
-                        android:textSize="18dp"
+                        android:textSize="14sp"
                         android:id="@+id/advice"
                         style="@style/TextAdvanced"
                         android:text="advice"/>
@@ -86,124 +78,90 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="end"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="10dp"
                     android:orientation="vertical">
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:padding="5dp"
-                        android:layout_marginTop="10dp">
+                        android:id="@+id/LinerCardOne"
+                        style="@style/ContainerLinerLayoutImage_Small">
 
-                        <LinearLayout android:orientation="horizontal"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content">
+                        <LinearLayout
+                            style="@style/LinerLayoutCard_Small">
 
                             <ImageView
-                                android:padding="10dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="75dp"
+                                style="@style/Image_Card_Small"
                                 android:src="@drawable/cloud"/>
 
                             <TextView
                                 android:id="@+id/clouds"
-                                android:textSize="15dp"
-                                android:padding="1dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="cloude"/>
+                                style="@style/TextValue_Small"
+                                android:text="clouds"/>
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                style="@style/TextTitle_Small"
                                 android:text="Облачность"
-                                android:textSize="15dp"/>
+                                />
                         </LinearLayout>
                         <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            >
+                            style="@style/LinerLayoutCard_Small">
 
                             <ImageView
-                                android:padding="10dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="75dp"
+                                style="@style/Image_Card_Small"
                                 android:src="@drawable/pressure"/>
 
                             <TextView
                                 android:id="@+id/pressure"
-                                android:textSize="15dp"
-                                android:padding="1dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                style="@style/TextValue_Small"
                                 android:text="pressure"/>
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                style="@style/TextTitle_Small"
                                 android:text="Давление"
-                                android:textSize="15dp"/>
+                                />
                         </LinearLayout>
-
-
-
                     </LinearLayout>
+
                     <LinearLayout
+                        android:id="@+id/LinerCardTwo"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:orientation="horizontal"
-                        android:padding="5dp"
-                        android:layout_marginTop="10dp">
+                        android:padding="2dp"
+                        android:layout_marginTop="1dp">
 
                         <LinearLayout
-                            style="@style/LinerLayoutCard_Normal">
+                            style="@style/LinerLayoutCard_Small">
 
                             <ImageView
-                                android:padding="10dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="75dp"
+                                style="@style/Image_Card_Small"
                                 android:src="@drawable/humidity"/>
 
                             <TextView
                                 android:id="@+id/humidity"
-                                android:textSize="15dp"
-                                android:padding="1dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="cloude"/>
+                                style="@style/TextValue_Small"
+                                android:text="humidly"/>
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                style="@style/TextTitle_Small"
                                 android:text="Влажность"
-                                android:textSize="15dp"/>
+                                />
                         </LinearLayout>
                         <LinearLayout
-                            style="@style/LinerLayoutCard_Normal">
+                            style="@style/LinerLayoutCard_Small">
 
                             <ImageView
-                                android:padding="10dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="75dp"
+                                style="@style/Image_Card_Small"
                                 android:src="@drawable/wind"/>
 
                             <TextView
                                 android:id="@+id/wind"
-                                android:textSize="15dp"
-                                android:padding="1dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="cloude"/>
+                                style="@style/TextValue_Small"
+                                android:text="wind"/>
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Скорость ветра"
-                                android:textSize="15dp"/>
+                                style="@style/TextTitle_Small"
+                                android:text="Скорость ветра" />
                         </LinearLayout>
 
 
@@ -218,8 +176,7 @@
 
         <ProgressBar
             android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Wrap"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -50,12 +50,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
-
-    // Testing Navigation
-    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
-
-    // Jetpack Compose Integration
-    implementation "androidx.navigation:navigation-compose:1.0.0-alpha02"
-
+    //noinspection GradleCompatible
+    implementation 'com.android.support:design:27.1.1'
 
 }

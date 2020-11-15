@@ -2,8 +2,6 @@ package com.example.mobilepractica
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.text.BoringLayout
-import android.util.Log
 
 class SharedPreferences(context: Context) {
     private val PREFS_NAME = "Weather"
@@ -19,4 +17,6 @@ class SharedPreferences(context: Context) {
     fun getValueString(KEY_NAME: String): String? {
         return sharedPref.getString(KEY_NAME, "")
     }
+
+
 }
