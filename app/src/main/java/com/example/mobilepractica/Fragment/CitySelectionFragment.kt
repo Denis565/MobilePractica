@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.text.BoringLayout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +29,7 @@ import kotlin.collections.ArrayList
 @Suppress("DEPRECATION")
 class CitySelectionFragment : Fragment() {
 
-    val cityArray= listOf("Москва", "Санкт-Петербург", "Новосибирск", "Екатеринбург", "Нижний Новгород", "Казань","Челябинск", "Омск", "Самара", "Ростов-на-Дону", "Уфа", "Красноярск", "Воронеж", "Пермь", "Волгоград", "Краснодар", "Саратов", "Тюмень", "Тольятти", "Ижевск", "Барнаул" , "Ульяновск" , "Иркутск" , "Хабаровск" , "Ярославоль" , "Владивосток" , "Махачкала" , "Томск" , "Оренбург", "Кемерово" , "Новокузнецк" , "Рязань" , "Астрахань" , "Пенза" , "Киров" , "Липецк" , "Чебоксары" , "Балашиха" , "Калининград" , "Тула")
+    private val cityArray= listOf("Москва", "Санкт-Петербург", "Новосибирск", "Екатеринбург", "Нижний Новгород", "Казань","Челябинск", "Омск", "Самара", "Ростов-на-Дону", "Уфа", "Красноярск", "Воронеж", "Пермь", "Волгоград", "Краснодар", "Саратов", "Тюмень", "Тольятти", "Ижевск", "Барнаул" , "Ульяновск" , "Иркутск" , "Хабаровск" , "Ярославоль" , "Владивосток" , "Махачкала" , "Томск" , "Оренбург", "Кемерово" , "Новокузнецк" , "Рязань" , "Астрахань" , "Пенза" , "Киров" , "Липецк" , "Чебоксары" , "Балашиха" , "Калининград" , "Тула")
 
     var cityAdd: ArrayList<String> = ArrayList()
     var cityAddElect: ArrayList<String> = ArrayList()
@@ -37,12 +38,10 @@ class CitySelectionFragment : Fragment() {
     var listViewElect:ListView?=null
     var adapter: ArrayAdapter<String>? = null
     var adapterElect: ArrayAdapter<String>? = null
-    var arrayCityElect: Array<String?>?= arrayOfNulls(40)
-    var countClickElect=0
+    private var arrayCityElect: Array<String?>?= arrayOfNulls(40)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_city_selection, container, false)
-        return view
+        return inflater.inflate(R.layout.fragment_city_selection, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -72,31 +71,18 @@ class CitySelectionFragment : Fragment() {
                 listCity!!.startAnimation(AnimationUtils.loadAnimation(context,R.anim.alpha_elect))
             }else{
 
-                    listViewElect!!.visibility = View.VISIBLE
-                    listViewElect!!.isEnabled = true
-                    listCity!!.visibility = View.GONE
-                    listCity!!.isEnabled = false
-                    adapterElect?.clear()
-                    listViewElect!!.startAnimation(AnimationUtils.loadAnimation(context,R.anim.alpha_elect))
+                listViewElect!!.visibility = View.VISIBLE
+                listViewElect!!.isEnabled = true
+                listCity!!.visibility = View.GONE
+                listCity!!.isEnabled = false
+                adapterElect?.clear()
+                listViewElect!!.startAnimation(AnimationUtils.loadAnimation(context,R.anim.alpha_elect))
 
             }
             init()
         }
     }
 
-    fun checkClickElect():Boolean{
-        val shar=sharedPreference.getString("Elects","")
-        return countClickElect!=0 || shar!=""
-    }
-
-    fun checkClickListCity():Boolean{
-        for (i in 0..arrayCityElect!!.size){
-            if (arrayCityElect!![i]!="" || arrayCityElect!![i]!="null"){
-                return false
-            }
-        }
-        return true
-    }
     fun init(){
         cityArray.forEach {
             cityAdd.add(it)
@@ -120,7 +106,7 @@ class CitySelectionFragment : Fragment() {
         listViewElect!!.onItemLongClickListener =
             AdapterView.OnItemLongClickListener { arg0, arg1, pos, id -> // TODO Auto-generated method stub
 
-                val shareding=sharedPreference.getString("Elects","")
+                val shareding= openElverShared()
                 val elects=cityAddElect[pos]
                 if (shareding!=elects) {
                     for (i in 0..cityArray.size) {
@@ -158,7 +144,6 @@ class CitySelectionFragment : Fragment() {
             val cityCheck="Ты выбрал город: ${cityAddElect[position]}"
             tv.text=cityCheck
             sharedPreference.edit().putString("Elects",cityAddElect[position]).apply()
-            countClickElect++
         }
     }
 
@@ -169,17 +154,43 @@ class CitySelectionFragment : Fragment() {
                 arrayCityElect!![position] = cityAdd[position]
             }
             else{
-                arrayCityElect!![position]=""
+                if (openShared(position)) {
+                    arrayCityElect!![position] = ""
+                }
             }
             onPutSettings()
         }
     }
 
     fun onPutSettings() {
-       val edit=sharedPreference.edit()
+        val edit=sharedPreference.edit()
         for (i in 0..39) {
-           // edit.remove("elect_$i")
+            edit.remove("elect_$i")
             edit.putString("elect_$i",arrayCityElect!![i].toString()).apply()
         }
     }
+
+    fun openElverShared():String{
+         return sharedPreference.getString("Elects","").toString()
+    }
+    fun openShared(j:Int):Boolean{
+        var boolean=true
+        try {
+            for (i in 0 until listViewElect?.count!!) {
+                if (arrayCityElect!![j].toString() != cityAddElect[i]) {
+                    boolean = true
+                }
+                else
+                {
+                    boolean=false
+                    break
+                }
+            }
+        }catch (e:Exception){
+            Toast.makeText(context,"Не надо нажимать на один и тотже элемент по несколько раз в секунду. Благодарю за понимание.",Toast.LENGTH_LONG).show()
+        }
+        return boolean
+    }
+
+
 }

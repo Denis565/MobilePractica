@@ -42,8 +42,6 @@ class WeatherFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         dataAcquisition()
-
-
     }
 
     override fun onAttach(context: Context) {
@@ -53,16 +51,17 @@ class WeatherFragment : Fragment() {
     }
 
     fun dataAcquisition(){
-            val shared= sharedPreferences.getString("Elects","")
-            if (sharedPreferences.contains("Elects") && shared!="") {
-                title.text = shared
-                Retrofit()
-            }
-            else
-            {
-                context?.let { Dialog().dialogInformation(it,"Первый вход","Выбирите город. Для этого нажмите на значек лупы.") }
-                progressBar.visibility=View.GONE
-            }
+        relativeLayout.visibility=View.GONE
+        val shared= sharedPreferences.getString("Elects","")
+        if (sharedPreferences.contains("Elects") && shared!="") {
+            title.text = shared
+            Retrofit()
+        }
+        else
+        {
+            context?.let { Dialog().dialogInformation(it,"Первый вход","Выбирите город. Для этого нажмите на значек лупы.") }
+            progressBar.visibility=View.GONE
+        }
     }
 
     fun animation(){
@@ -87,7 +86,7 @@ class WeatherFragment : Fragment() {
         call.enqueue(object : Callback<MainExampleWeather> {
 
             override fun onFailure(call: Call<MainExampleWeather>, t: Throwable) {
-                Toast.makeText(context,t.message.toString(),Toast.LENGTH_LONG).show()
+                Toast.makeText(context,"JQ",Toast.LENGTH_LONG).show()
                 Log.d("TAG",t.message.toString())
             }
 
@@ -97,7 +96,7 @@ class WeatherFragment : Fragment() {
                         oneDay(response.body()!!)
                 }
                 else{
-                    Toast.makeText(context,response.code().toString(),Toast.LENGTH_LONG).show()
+                    Toast.makeText(context,"Проверьте правильно ли вы выбрали город",Toast.LENGTH_LONG).show()
                 }
             }
         })

@@ -3,20 +3,14 @@ package com.example.mobilepractica
 import android.content.Context
 import android.content.SharedPreferences
 
-class SharedPreferences(context: Context) {
-    private val PREFS_NAME = "Weather"
-    val sharedPref: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+class SharedPreferences() {
 
-    fun save(KEY_NAME: String, value: String) {
-        val editor: SharedPreferences.Editor = sharedPref.edit()
-        editor.clear()
-        editor.putString(KEY_NAME, value)
-        editor.apply()
+   /* fun getValueStringElect(KEY_NAME: String,sharedPreference:SharedPreferences): String? {
+        return sharedPreference.getString(KEY_NAME,"").toString()
     }
 
-    fun getValueString(KEY_NAME: String): String? {
-        return sharedPref.getString(KEY_NAME, "")
-    }
-
+    fun saveElact(KEY_NAME: String,,sharedPreference:SharedPreferences){
+        return sharedPreference.edit().putString("Elects",cityAddElect[position]).apply()
+    }*/
 
 }
