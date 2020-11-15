@@ -19,10 +19,12 @@
 
         <CheckBox
             android:id="@+id/checkedSystem"
+            android:layout_margin="10dp"
+            android:textSize="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Избранные города"
-            android:checked="false"/>
+            android:checked="false" />
 
 
         <ListView
@@ -45,9 +47,10 @@
             />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tv"/>
+
     </LinearLayout>
 
 </FrameLayout>

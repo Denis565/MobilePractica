@@ -16,8 +16,11 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
+import com.example.mobilepractica.Dialog
 import com.example.mobilepractica.R
 import kotlinx.android.synthetic.main.fragment_city_selection.*
+import kotlinx.android.synthetic.main.fragment_weather.*
+import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -34,7 +37,8 @@ class CitySelectionFragment : Fragment() {
     var listViewElect:ListView?=null
     var adapter: ArrayAdapter<String>? = null
     var adapterElect: ArrayAdapter<String>? = null
-    var arrayCityElect: Array<String?>?= arrayOfNulls(42)
+    var arrayCityElect: Array<String?>?= arrayOfNulls(40)
+    var countClickElect=0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_city_selection, container, false)
@@ -49,7 +53,6 @@ class CitySelectionFragment : Fragment() {
         onClickCheckBox()
         onClickCityEleven()
         removeListViewElected()
-
     }
 
     override fun onAttach(context: Context) {
@@ -60,22 +63,40 @@ class CitySelectionFragment : Fragment() {
 
     fun onClickCheckBox(){
         checkedSystem.setOnClickListener {
-            if (!checkedSystem.isChecked){
+            if (!checkedSystem.isChecked ){
                 listCity!!.visibility=View.VISIBLE
                 listCity!!.isEnabled=true
                 listViewElect!!.isEnabled=false
                 listViewElect!!.visibility=View.GONE
+                adapter?.clear()
+                listCity!!.startAnimation(AnimationUtils.loadAnimation(context,R.anim.alpha_elect))
             }else{
-                listViewElect!!.visibility=View.VISIBLE
-                listViewElect!!.isEnabled=true
-                listCity!!.visibility=View.GONE
-                listCity!!.isEnabled=false
-                adapterElect?.clear()
-                init()
+
+                    listViewElect!!.visibility = View.VISIBLE
+                    listViewElect!!.isEnabled = true
+                    listCity!!.visibility = View.GONE
+                    listCity!!.isEnabled = false
+                    adapterElect?.clear()
+                    listViewElect!!.startAnimation(AnimationUtils.loadAnimation(context,R.anim.alpha_elect))
+
             }
+            init()
         }
     }
 
+    fun checkClickElect():Boolean{
+        val shar=sharedPreference.getString("Elects","")
+        return countClickElect!=0 || shar!=""
+    }
+
+    fun checkClickListCity():Boolean{
+        for (i in 0..arrayCityElect!!.size){
+            if (arrayCityElect!![i]!="" || arrayCityElect!![i]!="null"){
+                return false
+            }
+        }
+        return true
+    }
     fun init(){
         cityArray.forEach {
             cityAdd.add(it)
@@ -84,16 +105,14 @@ class CitySelectionFragment : Fragment() {
         listCity!!.adapter = adapter
 
         for (i in 0..39){
-            arrayCityElect!![i]=sharedPreference.getString("elect_$i","").toString()
-        }
-
-        arrayCityElect!!.forEach {
-            if ( it!="" && it!=null) {
-                cityAddElect.add(it.toString())
+            val sher=sharedPreference.getString("elect_$i","").toString()
+            arrayCityElect!![i]=sher
+            if (sher!="" && sher!="null") {
+                cityAddElect.add(sher)
             }
         }
 
-        adapterElect = context?.let { ArrayAdapter(it, android.R.layout.simple_list_item_checked, cityAddElect) }
+        adapterElect = context?.let { ArrayAdapter(it, android.R.layout.simple_list_item_1, cityAddElect) }
         listViewElect!!.adapter = adapterElect
     }
 
@@ -101,10 +120,34 @@ class CitySelectionFragment : Fragment() {
         listViewElect!!.onItemLongClickListener =
             AdapterView.OnItemLongClickListener { arg0, arg1, pos, id -> // TODO Auto-generated method stub
 
-                adapterElect!!.remove(cityAddElect[pos])
-                listViewElect!!.clearChoices()
-                adapterElect!!.notifyDataSetChanged()
-                listViewElect!![pos].startAnimation(AnimationUtils.loadAnimation(context, R.anim.translate_list_view))
+                val shareding=sharedPreference.getString("Elects","")
+                val elects=cityAddElect[pos]
+                if (shareding!=elects) {
+                    for (i in 0..cityArray.size) {
+                        if (elects == cityArray[i]) {
+                            arrayCityElect!![i] = ""
+                            onPutSettings()
+                            break
+                        }
+                    }
+
+                    adapterElect!!.remove(cityAddElect[pos])
+                    listViewElect!!.clearChoices()
+                    adapterElect!!.notifyDataSetChanged()
+                    listViewElect!![pos].startAnimation(
+                        AnimationUtils.loadAnimation(context, R.anim.translate_list_view)
+                    )
+                }
+                else{
+                    context?.let { Dialog().dialogInformation(
+                        it,
+                        "Предупреждение",
+                        "Нельзя удалять город из списка который выбран для вывода погоды. " +
+                                "Для удаления этого города зайдите на главную страницу со списком городов " +
+                                "и выберете от тудого хотябы один город и выберете его для вывода погоды, " +
+                                "тогда вы сможете удалить город $elects из списка"
+                    )}
+                }
 
                 true
             }
@@ -112,7 +155,10 @@ class CitySelectionFragment : Fragment() {
 
     fun onClickCityEleven(){
         listViewElect!!.setOnItemClickListener { parent, view, position, id ->
-            sharedPreference.edit().putString("Elect",cityAddElect[position]).apply()
+            val cityCheck="Ты выбрал город: ${cityAddElect[position]}"
+            tv.text=cityCheck
+            sharedPreference.edit().putString("Elects",cityAddElect[position]).apply()
+            countClickElect++
         }
     }
 
@@ -132,23 +178,8 @@ class CitySelectionFragment : Fragment() {
     fun onPutSettings() {
        val edit=sharedPreference.edit()
         for (i in 0..39) {
-            edit.remove("elect_$i")
+           // edit.remove("elect_$i")
             edit.putString("elect_$i",arrayCityElect!![i].toString()).apply()
         }
-        tv.text=""
-        onShowSettings()
     }
-
-    // считываем имена котов обратно
-    fun onShowSettings() {
-        var str=""
-        for (i in 0..39) {
-            val ret = sharedPreference.getString("elect_$i","")
-            if (ret!="null" && ret!=""  && ret!=null) {
-                str+=ret+"\n"
-            }
-        }
-        tv.text=str
-    }
-
 }

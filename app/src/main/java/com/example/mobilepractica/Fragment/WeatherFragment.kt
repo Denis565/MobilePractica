@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.mobilepractica.BuildConfig
 import com.example.mobilepractica.Common.Common
+import com.example.mobilepractica.Dialog
 import com.example.mobilepractica.Interface.WeatherAPIInterface
 import com.example.mobilepractica.Model.APIExample.MainExampleWeather
 import com.example.mobilepractica.R
@@ -52,19 +53,14 @@ class WeatherFragment : Fragment() {
     }
 
     fun dataAcquisition(){
-            val shared= sharedPreferences.getString("Elect","")
-            if (sharedPreferences.contains("Elect") && shared!="") {
+            val shared= sharedPreferences.getString("Elects","")
+            if (sharedPreferences.contains("Elects") && shared!="") {
                 title.text = shared
                 Retrofit()
             }
             else
             {
-                val builder=AlertDialog.Builder(context)
-                builder.setTitle("Первый вход")
-                builder.setMessage("Выбирите город. Для этого нажмите на значек лупы.")
-
-                builder.setPositiveButton("Да"){ _, _ -> }
-                builder.create().show()
+                context?.let { Dialog().dialogInformation(it,"Первый вход","Выбирите город. Для этого нажмите на значек лупы.") }
                 progressBar.visibility=View.GONE
             }
     }
