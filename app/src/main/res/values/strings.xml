@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">MobilePractica</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="selected_cities">Избранные города</string>
     <string name="text_city">City</string>
@@ -23,5 +22,4 @@
     <string name="pressure">pressure</string>
     <string name="weather">Погода</string>
     <string name="city_selection">Выбор города</string>
-
 </resources>

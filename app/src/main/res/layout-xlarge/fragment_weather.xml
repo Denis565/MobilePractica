@@ -171,7 +171,6 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-
         </RelativeLayout>
 
         <ProgressBar
@@ -183,5 +182,4 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </FrameLayout>

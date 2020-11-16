@@ -46,7 +46,7 @@
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:padding">0dp</item>
     </style>
-///////////////////////////////////////////////
+
     <style name="LinerLayoutCard">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
@@ -86,8 +86,6 @@
         <item name="android:layout_margin">10dp</item>
     </style>
 
-//////////////////////////////////////////
-
     <style name="TextTitle_Description_Normal" parent="Wrap">
         <item name="android:layout_marginTop">3dp</item>
     </style>
@@ -95,7 +93,7 @@
     <style name="TextTitle_Description_Small" parent="Wrap">
         <item name="android:layout_marginTop">10dp</item>
     </style>
-    //////////////////////////////////////////
+
     <style name="Image_Card">
         <item name="android:padding">10dp</item>
         <item name="android:layout_width">match_parent</item>
@@ -120,9 +118,6 @@
         <item name="android:layout_height">90dp</item>
     </style>
 
-
-
-    //////////////////////////////////////////////////
     <style name="TextValue" parent="TextTitle">
         <item name="android:padding">1dp</item>
     </style>
@@ -173,14 +168,18 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="ProgressBar" >
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="layout_constraintTop_toTopOf">parent</item>
-        <item name="layout_constraintBottom_toBottomOf">parent</item>
-        <item name="layout_constraintEnd_toEndOf">parent</item>
-        <item name="layout_constraintStart_toStartOf">parent</item>
+    <style name="FragmentCityLinerLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:orientation">vertical</item>
     </style>
-
-
+    <style name="FragmentCityListView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="layoutManager">5</item>
+    </style>
 </resources>

@@ -170,12 +170,8 @@
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-
-
             </LinearLayout>
-
         </RelativeLayout>
-
         <ProgressBar
             android:id="@+id/progressBar"
             style="@style/Wrap"

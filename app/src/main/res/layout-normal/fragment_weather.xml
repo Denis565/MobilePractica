@@ -170,17 +170,10 @@
                                 style="@style/TextTitle_Small"
                                 android:text="@string/text_humidly" />
                         </LinearLayout>
-
-
-
                     </LinearLayout>
                 </LinearLayout>
-
-
             </LinearLayout>
-
         </RelativeLayout>
-
         <ProgressBar
             android:id="@+id/progressBar"
             style="@style/Wrap"

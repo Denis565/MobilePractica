@@ -7,11 +7,7 @@
     tools:context=".Fragment.CitySelectionFragment">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        tools:context=".MainActivity"
-        android:orientation="vertical"
+        style="@style/FragmentCityLinerLayout"
         >
 
         <CheckBox
@@ -23,22 +19,17 @@
             android:text="@string/selected_cities"
             android:checked="false" />
 
-
         <ListView
             android:choiceMode="multipleChoice"
             android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
+            style="@style/FragmentCityListView"
             android:visibility="visible"
             android:saveEnabled="false"
             />
         <ListView
             android:choiceMode="singleChoice"
             android:id="@+id/listViewElect"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
+            style="@style/FragmentCityListView"
             android:visibility="gone"
             android:saveEnabled="false"
             />
