@@ -5,7 +5,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-
 interface WeatherAPIInterface{
 
     @GET("weather")
@@ -15,7 +14,6 @@ interface WeatherAPIInterface{
         @Query("lang") lang:String,
         @Query("appid") api_key: String
     ): Call<MainExampleWeather>
-
 }
 
 

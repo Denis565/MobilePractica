@@ -51,7 +51,7 @@
                                 style="@style/Wrap"
                                 android:textStyle="bold"
                                 android:text="@string/text_2"
-                                android:textSize="45sp" />
+                                android:textSize="50sp" />
 
                             <TextView
                                 android:id="@+id/icon_temperature"
@@ -59,7 +59,7 @@
                                 android:layout_marginTop="5dp"
                                 android:textStyle="bold"
                                 android:text="@string/text_c"
-                                android:textSize="18sp" />
+                                android:textSize="20sp" />
 
                         </LinearLayout>
 

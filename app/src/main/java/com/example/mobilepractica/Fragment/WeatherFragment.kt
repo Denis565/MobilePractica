@@ -3,11 +3,7 @@
 package com.example.mobilepractica.Fragment
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
-import android.content.Context
 import android.os.Bundle
-import android.os.Handler
-import android.preference.PreferenceManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,14 +11,10 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.mobilepractica.BuildConfig
+import com.example.mobilepractica.*
 import com.example.mobilepractica.Common.Common
-import com.example.mobilepractica.Dialog
 import com.example.mobilepractica.Interface.WeatherAPIInterface
 import com.example.mobilepractica.Model.APIExample.MainExampleWeather
-import com.example.mobilepractica.R
-import com.example.mobilepractica.Retrafit.RetrofitClient
-import kotlinx.android.synthetic.main.fragment_city_selection.*
 import kotlinx.android.synthetic.main.fragment_weather.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,35 +24,28 @@ import retrofit2.Response
 @Suppress("DEPRECATION", "PLUGIN_WARNING")
 class WeatherFragment : Fragment() {
 
-    lateinit var sharedPreferences:android.content.SharedPreferences
     lateinit var api: WeatherAPIInterface
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_weather, container, false)
-        return view
+       return inflater.inflate(R.layout.fragment_weather, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         dataAcquisition()
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        sharedPreferences= PreferenceManager.getDefaultSharedPreferences(activity)
-    }
-
     fun dataAcquisition(){
         relativeLayout.visibility=View.GONE
-        val shared= sharedPreferences.getString("Elects","")
-        if (sharedPreferences.contains("Elects") && shared!="") {
+        val shared= context?.let { SharedPreference(it).open("Elects") }
+        if (context?.let { SharedPreference(it).shared.contains("Elects") }!! && shared!="") {
             title.text = shared
             Retrofit()
         }
         else
         {
-            context?.let { Dialog().dialogInformation(it,"Первый вход","Выбирите город. Для этого нажмите на значек лупы, и там нажмите на город который вам нужен.") }
+            context?.let { Dialog().dialogInformation(it,"Первый вход","Выбирите город. Для этого нажмите на значек лупы, и там нажмите на город ,который вам нужен.") }
             progressBar.visibility=View.GONE
-            sharedPreferences.edit().putInt("start",1).apply()
+            SharedPreference(requireContext()).saveInt(1)
         }
     }
 
@@ -126,5 +111,4 @@ class WeatherFragment : Fragment() {
         relativeLayout.visibility=View.VISIBLE
         progressBar.visibility=View.GONE
     }
-
 }

@@ -22,5 +22,4 @@ class RetrofitClient {
         return retrofit!!
 
     }
-
 }

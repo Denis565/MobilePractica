@@ -10,8 +10,6 @@ import kotlinx.android.synthetic.main.fragment_city_selection.*
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -19,6 +17,4 @@ class MainActivity : AppCompatActivity() {
         val controller = Navigation.findNavController(this,R.id.nav_host_fragment)
         NavigationUI.setupWithNavController(bottomNavigationView,controller)
     }
-
-
 }
