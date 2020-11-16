@@ -8,8 +8,6 @@ import retrofit2.http.Query
 
 interface WeatherAPIInterface{
 
-   // val url="https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689
-   // &exclude=current,minutely,hourly,alerts&appid=401e7c441a859bf21e718863f6bbc7ab&lang=ru"
     @GET("weather")
     fun getWeather(
         @Query("q") city: String,

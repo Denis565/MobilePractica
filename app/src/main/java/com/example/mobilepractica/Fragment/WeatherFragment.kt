@@ -59,8 +59,9 @@ class WeatherFragment : Fragment() {
         }
         else
         {
-            context?.let { Dialog().dialogInformation(it,"Первый вход","Выбирите город. Для этого нажмите на значек лупы.") }
+            context?.let { Dialog().dialogInformation(it,"Первый вход","Выбирите город. Для этого нажмите на значек лупы, и там нажмите на город который вам нужен.") }
             progressBar.visibility=View.GONE
+            sharedPreferences.edit().putInt("start",1).apply()
         }
     }
 
@@ -93,10 +94,10 @@ class WeatherFragment : Fragment() {
             @SuppressLint("SetTextI18n")
             override fun onResponse(call: Call<MainExampleWeather>, response: Response<MainExampleWeather>) {
                 if (response.isSuccessful) {
-                        oneDay(response.body()!!)
+                    oneDay(response.body()!!)
                 }
                 else{
-                    Toast.makeText(context,"Проверьте правильно ли вы выбрали город",Toast.LENGTH_LONG).show()
+                    Toast.makeText(context,response.code().toString(),Toast.LENGTH_LONG).show()
                 }
             }
         })
@@ -119,7 +120,7 @@ class WeatherFragment : Fragment() {
             advice.text="Идти купаться, или загорать."
         }
         else{
-            advice.text="Оденься теплее."
+            advice.text="Одеться теплее."
         }
 
         animation()

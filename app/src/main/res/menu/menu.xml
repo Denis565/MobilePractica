@@ -3,11 +3,11 @@
     <item
         android:id="@+id/cloud"
         android:icon="@drawable/ic_cloud"
-        android:title="Погода"
+        android:title="@string/weather"
         />
     <item
         android:id="@+id/search"
         android:icon="@drawable/ic_search"
-        android:title="Выбор города"
+        android:title="@string/city_selection"
         />
 </menu>

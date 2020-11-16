@@ -39,14 +39,23 @@ class CitySelectionFragment : Fragment() {
     var adapter: ArrayAdapter<String>? = null
     var adapterElect: ArrayAdapter<String>? = null
     private var arrayCityElect: Array<String?>?= arrayOfNulls(40)
+    var start:Int?=null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_city_selection, container, false)
     }
 
+    fun startCity():Int{
+        return sharedPreference.getInt("start",0)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         listCity=view.findViewById<ListView>(R.id.listView);
         listViewElect=view.findViewById(R.id.listViewElect)
+        start=startCity()
+        if (start==1){
+            checkedSystem.visibility=View.GONE
+        }
         init()
         onClickCitySelected()
         onClickCheckBox()
@@ -68,7 +77,7 @@ class CitySelectionFragment : Fragment() {
                 listViewElect!!.isEnabled=false
                 listViewElect!!.visibility=View.GONE
                 adapter?.clear()
-                listCity!!.startAnimation(AnimationUtils.loadAnimation(context,R.anim.alpha_elect))
+                listCity!!.startAnimation(AnimationUtils.loadAnimation(context,R.anim.alpha_list_city))
             }else{
 
                 listViewElect!!.visibility = View.VISIBLE
@@ -120,18 +129,15 @@ class CitySelectionFragment : Fragment() {
                     adapterElect!!.remove(cityAddElect[pos])
                     listViewElect!!.clearChoices()
                     adapterElect!!.notifyDataSetChanged()
-                    listViewElect!![pos].startAnimation(
-                        AnimationUtils.loadAnimation(context, R.anim.translate_list_view)
-                    )
                 }
                 else{
                     context?.let { Dialog().dialogInformation(
                         it,
                         "Предупреждение",
-                        "Нельзя удалять город из списка который выбран для вывода погоды. " +
-                                "Для удаления этого города зайдите на главную страницу со списком городов " +
-                                "и выберете от тудого хотябы один город и выберете его для вывода погоды, " +
-                                "тогда вы сможете удалить город $elects из списка"
+                        "Нельзя удалять город из списка,который выбран для вывода погоды.Для удаления этого города вам " +
+                                "необходимо либо выбрать другой город для вывода информации из экрана с избраными городами, либо если " +
+                                "в списке с избранными городами всего один город, добавте его из экрана со списком городов и потом выбрать " +
+                                "его в избранных городах"
                     )}
                 }
 
@@ -141,24 +147,31 @@ class CitySelectionFragment : Fragment() {
 
     fun onClickCityEleven(){
         listViewElect!!.setOnItemClickListener { parent, view, position, id ->
-            val cityCheck="Ты выбрал город: ${cityAddElect[position]}"
-            tv.text=cityCheck
             sharedPreference.edit().putString("Elects",cityAddElect[position]).apply()
         }
     }
 
     fun onClickCitySelected(){
         listCity!!.setOnItemClickListener { parent, view, position, id ->
-
-            if (listCity!!.isItemChecked(position)) {
-                arrayCityElect!![position] = cityAdd[position]
+            if (startCity()==1){
+                val startCity=cityAdd[position]
+                sharedPreference.edit().putString("Elects",startCity).apply()
+                Toast.makeText(context,"Вы выбрали в качестве стартового горрода: ${startCity}",Toast.LENGTH_LONG).show()
+                sharedPreference.edit().putInt("start",2).apply()
+                checkedSystem.visibility=View.VISIBLE
+                arrayCityElect!![position] = startCity
+                onPutSettings()
             }
-            else{
-                if (openShared(position)) {
-                    arrayCityElect!![position] = ""
+            else {
+                if (listCity!!.isItemChecked(position)) {
+                    arrayCityElect!![position] = cityAdd[position]
+                } else {
+                    if (openShared(position)) {
+                        arrayCityElect!![position] = ""
+                    }
                 }
+                onPutSettings()
             }
-            onPutSettings()
         }
     }
 

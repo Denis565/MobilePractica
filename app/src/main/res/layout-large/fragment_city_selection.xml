@@ -20,7 +20,7 @@
         <CheckBox
             android:id="@+id/checkedSystem"
             android:layout_margin="10dp"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/selected_cities"
@@ -45,11 +45,6 @@
             android:visibility="gone"
             android:saveEnabled="false"
             />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv"/>
 
     </LinearLayout>
 

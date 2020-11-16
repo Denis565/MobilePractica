@@ -29,11 +29,21 @@
         <item name="android:orientation">horizontal</item>
     </style>
     <style name="ContainerLinerLayoutImage_Normal" parent="ContainerLinerLayoutImage">
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:padding">5dp</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:padding">1dp</item>
     </style>
     <style name="ContainerLinerLayoutImage_Small" parent="ContainerLinerLayoutImage">
-        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginTop">7dp</item>
+        <item name="android:padding">0dp</item>
+    </style>
+
+    <style name="ContainerLinerLayoutImage_Large" parent="ContainerLinerLayoutImage">
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:padding">2dp</item>
+    </style>
+
+    <style name="ContainerLinerLayoutImage_XLarge" parent="ContainerLinerLayoutImage">
+        <item name="android:layout_marginTop">10dp</item>
         <item name="android:padding">0dp</item>
     </style>
 ///////////////////////////////////////////////
@@ -41,24 +51,39 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_marginTop">1dp</item>
-        <item name="android:background">#C4B6DD</item>
+        <item name="android:background">#D5CDE4</item>
         <item name="android:orientation">vertical</item>
         <item name="android:gravity">center</item>
     </style>
 
     <style name="LinerLayoutCard_Small" parent="LinerLayoutCard">
-        <item name="android:padding">5dp</item>
+        <item name="android:padding">1dp</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginRight">7dp</item>
-        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_marginRight">9dp</item>
+        <item name="android:layout_margin">5dp</item>
     </style>
 
 
     <style name="LinerLayoutCard_Normal" parent="LinerLayoutCard">
-        <item name="android:layout_height">1dp</item>
-        <item name="android:layout_marginRight">17dp</item>
-        <item name="android:layout_margin">12dp</item>
         <item name="android:padding">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginRight">3dp</item>
+        <item name="android:layout_margin">7dp</item>
+    </style>
+
+    <style name="LinerLayoutCard_Large" parent="LinerLayoutCard">
+        <item name="android:padding">7dp</item>
+        <item name="android:layout_marginBottom">7sp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginRight">18dp</item>
+        <item name="android:layout_margin">7dp</item>
+    </style>
+
+    <style name="LinerLayoutCard_XLarge" parent="LinerLayoutCard">
+        <item name="android:padding">5dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_margin">10dp</item>
     </style>
 
 //////////////////////////////////////////
@@ -83,14 +108,36 @@
         <item name="android:layout_height">40dp</item>
     </style>
 
+    <style name="Image_Card_Large">
+        <item name="android:padding">7dp</item>
+        <item name="android:layout_width">90dp</item>
+        <item name="android:layout_height">90dp</item>
+    </style>
 
-//////////////////////////////////////////////////
+    <style name="Image_Card_XLarge">
+        <item name="android:padding">7dp</item>
+        <item name="android:layout_width">140dp</item>
+        <item name="android:layout_height">140dp</item>
+    </style>
+
+
+
+    //////////////////////////////////////////////////
     <style name="TextValue" parent="TextTitle">
         <item name="android:padding">1dp</item>
     </style>
     <style name="TextValue_Small" parent="TextTitle">
         <item name="android:padding">1dp</item>
         <item name="android:textSize">17sp</item>
+    </style>
+    <style name="TextValue_Large" parent="TextTitle">
+        <item name="android:padding">1dp</item>
+        <item name="android:textSize">27sp</item>
+    </style>
+
+    <style name="TextValue_XLarge" parent="TextTitle">
+        <item name="android:padding">1dp</item>
+        <item name="android:textSize">37sp</item>
     </style>
 
     <style name="TextTitle">
@@ -105,6 +152,16 @@
     <style name="TextTitle_Small" parent="TextTitle">
         <item name="android:textSize">15sp</item>
     </style>
+
+    <style name="TextTitle_Large" parent="TextTitle">
+        <item name="android:textSize">25sp</item>
+    </style>
+
+
+    <style name="TextTitle_XLarge" parent="TextTitle">
+        <item name="android:textSize">30sp</item>
+    </style>
+
 
     <style name="Match">
         <item name="android:layout_width">match_parent</item>

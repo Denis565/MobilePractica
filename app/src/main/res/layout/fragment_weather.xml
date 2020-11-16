@@ -25,14 +25,14 @@
 
                 <TextView
                     android:id="@+id/title"
-                    style="@style/TextTitle_Description_Small"
+                    style="@style/TextTitle_Description_Normal"
                     android:text="City"
                     android:textColor="@color/white"
                     android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/description"
-                    style="@style/TextTitle_Description_Small"
+                    style="@style/TextTitle_Description_Normal"
                     android:text="Description"
                     android:textSize="15sp"/>
 
