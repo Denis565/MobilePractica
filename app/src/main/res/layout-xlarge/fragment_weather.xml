@@ -34,13 +34,13 @@
                         style="@style/TextTitle_Description_Small"
                         android:text="@string/text_city"
                         android:textColor="@color/white"
-                        android:textSize="50sp" />
+                        android:textSize="40sp" />
 
                     <TextView
                         android:id="@+id/description"
                         style="@style/TextTitle_Description_Small"
                         android:text="@string/text_description"
-                        android:textSize="60sp"/>
+                        android:textSize="50sp"/>
 
                     <LinearLayout
                         style="@style/Wrap"
@@ -51,7 +51,7 @@
                             style="@style/Wrap"
                             android:textStyle="bold"
                             android:text="@string/text_2"
-                            android:textSize="120sp" />
+                            android:textSize="100sp" />
 
                         <TextView
                             android:id="@+id/icon_temperature"
@@ -69,12 +69,12 @@
                         android:layout_marginBottom="12dp">
                         <TextView
                             android:id="@+id/adviceText"
-                            android:textSize="56sp"
+                            android:textSize="50sp"
                             android:textStyle="bold"
                             style="@style/TextAdvanced"
                             android:text="@string/text_adviceText"/>
                         <TextView
-                            android:textSize="50sp"
+                            android:textSize="40sp"
                             android:id="@+id/advice"
                             style="@style/TextAdvanced"
                             android:text="@string/advice"/>

@@ -113,7 +113,7 @@ class CitySelectionFragment : Fragment() {
 
     fun removeListViewElected(){
         listViewElect!!.onItemLongClickListener =
-            AdapterView.OnItemLongClickListener { arg0, arg1, pos, id -> // TODO Auto-generated method stub
+            AdapterView.OnItemLongClickListener { _, _, pos, _ -> // TODO Auto-generated method stub
 
                 val shareding= openElverShared()
                 val elects=cityAddElect[pos]
@@ -146,20 +146,20 @@ class CitySelectionFragment : Fragment() {
     }
 
     fun onClickCityEleven(){
-        listViewElect!!.setOnItemClickListener { parent, view, position, id ->
+        listViewElect!!.setOnItemClickListener { _, _, position, _ ->
             sharedPreference.edit().putString("Elects",cityAddElect[position]).apply()
         }
     }
 
     fun onClickCitySelected(){
-        listCity!!.setOnItemClickListener { parent, view, position, id ->
+        listCity!!.setOnItemClickListener { _, _, position, _ ->
             if (startCity()==1){
                 val startCity=cityAdd[position]
                 sharedPreference.edit().putString("Elects",startCity).apply()
-                Toast.makeText(context,"Вы выбрали в качестве стартового горрода: ${startCity}",Toast.LENGTH_LONG).show()
+                Toast.makeText(context,"Вы выбрали в качестве стартового горрода: $startCity",Toast.LENGTH_LONG).show()
                 sharedPreference.edit().putInt("start",2).apply()
                 checkedSystem.visibility=View.VISIBLE
-                arrayCityElect!![position] = startCity
+                arrayCityElect!![position] = cityAdd[position]
                 onPutSettings()
             }
             else {
